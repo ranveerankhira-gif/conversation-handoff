@@ -1,0 +1,6 @@
+interface:
+  display_name: "长对话交接助手"
+  short_description: "创建、核验或恢复包含完整可见记录的长对话交接包"
+  default_prompt: "使用 $conversation-handoff 为这段对话创建可核验的交接包，并明确报告记录范围与缺失内容。"
+policy:
+  allow_implicit_invocation: false

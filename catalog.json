@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "repository": "ranveerankhira-gif/conversation-handoff",
+  "skills": [
+    {
+      "name": "conversation-handoff",
+      "display_name_zh": "长对话交接助手",
+      "purpose_zh": "创建、核验或恢复包含完整可见记录与详细工作记忆的长对话交接包",
+      "release": "v0.1.0",
+      "platforms": [
+        "cross-platform"
+      ],
+      "risk_level": "high",
+      "permissions": {
+        "network": false,
+        "filesystem_read": true,
+        "filesystem_write": true,
+        "credentials": true,
+        "external_state": false,
+        "cost_or_quota": false
+      },
+      "dependencies": [
+        "Python 3.10+",
+        "完整的用户提供 JSONL，或当前宿主可访问的明确 Codex 会话",
+        "可选：人工检查导出图片中的文字秘密"
+      ],
+      "invocation_policy": "explicit-only",
+      "license": "MIT",
+      "version": "0.1.0",
+      "archive_sha256": null
+    }
+  ]
+}

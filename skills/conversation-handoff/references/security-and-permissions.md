@@ -1,0 +1,9 @@
+# Security and permissions
+
+- **Read**: reads one explicitly selected Codex session log or one user-supplied JSONL transcript. It does not enumerate conversation contents to choose a source. For a Codex source it excludes system/developer messages, reasoning, tool records, and recognized runtime-injected context. A stable read is capped at 512 MiB.
+- **Write**: creates a new sibling-locked handoff directory and, after finalization, one new ZIP. Existing directories and ZIPs are never overwritten. Destinations inside a Git repository or Skill directory, filesystem roots, symbolic links, and junctions are rejected. Recursive cleanup is limited to a sibling directory carrying an exact ownership marker.
+- **Archive safety**: verification rejects ZIP Slip paths, backslashes, absolute paths, duplicate or case/Unicode-colliding names, Windows reserved names, links, encrypted members, files missing from the manifest, and archives above the configured expansion limit. Extraction uses a new empty owned directory.
+- **Network**: none. The script does not upload, send, synchronize, sign in, or call an API.
+- **Credentials and private content**: likely text credentials block preparation/finalization and the secret is not echoed. This is pattern-based and cannot identify every secret. It cannot inspect text rendered inside images; the user must review images before sharing. Cookies, browser profiles, environment dumps, login state, and unrelated conversations are not valid inputs.
+- **Cost**: no paid service, model download, GPU work, or external quota is required.
+- **Confirmation boundary**: explicit `$conversation-handoff` invocation authorizes only local preparation, finalization, verification, or extraction requested in the current task. Uploading, sending, publishing, deleting another bundle, or replaying an old external action requires separate current authorization.
