@@ -1,13 +1,27 @@
 # 跨对话交接 Skill
 
-一个用于长 ChatGPT／Codex 对话迁移的显式调用 Skill：保存可访问的完整可见消息记录、详细语义交接和可验证清单，让新对话能从可靠断点继续。
+**对话太长需要换窗口时，不只留一段摘要：把完整可见记录、工作状态和校验凭据一起交过去。**
 
-> A verified long-conversation handoff skill with a complete visible transcript, detailed working memory, and manifest-based integrity checks.
+`conversation-handoff` 是一个显式调用的长对话交接 Skill。它为 ChatGPT／Codex 对话生成完整可见消息记录、带序号依据的详细交接和可验证清单，让新对话从有证据的断点继续，而不是猜测旧对话发生过什么。
+
+> Move a long ChatGPT or Codex task into a new conversation with the complete accessible transcript, detailed working memory, and manifest-based integrity checks.
 
 [![Skill](https://img.shields.io/badge/skill-1-2563eb)](#核心能力)
+[![Latest release](https://img.shields.io/github/v/release/ranveerankhira-gif/conversation-handoff?label=release)](https://github.com/ranveerankhira-gif/conversation-handoff/releases/latest)
+[![Validate](https://github.com/ranveerankhira-gif/conversation-handoff/actions/workflows/validate.yml/badge.svg)](https://github.com/ranveerankhira-gif/conversation-handoff/actions/workflows/validate.yml)
 [![Explicit only](https://img.shields.io/badge/invocation-explicit--only-d97706)](#安全边界)
 [![Offline](https://img.shields.io/badge/network-none-16a34a)](#安全边界)
 [![License: MIT](https://img.shields.io/badge/license-MIT-16a34a)](LICENSE)
+
+## 什么时候用它
+
+| 场景 | 对应模式 |
+|---|---|
+| 当前对话太长，要换新对话继续同一项工作 | **Create**：建立带完整可见记录的交接包 |
+| 别人发来一个交接 ZIP，不确定是否完整或被改过 | **Audit**：只验证清单、哈希和安全边界 |
+| 已有验证通过的交接包，要恢复未完成任务 | **Resume**：先报告继承上下文，再继续工作 |
+
+**立即使用：**前往 [最新 Release](https://github.com/ranveerankhira-gif/conversation-handoff/releases/latest)，下载 `conversation-handoff-<version>.zip`，并用 `SHA256SUMS.txt` 核对文件。
 
 ## 为什么不能只写一段摘要
 
@@ -30,7 +44,7 @@
 
 ## 安装
 
-正式版本请从 GitHub Releases 下载，并核对同一版本的 `SHA256SUMS.txt`。
+正式版本请从 [GitHub Releases](https://github.com/ranveerankhira-gif/conversation-handoff/releases/latest) 下载，并核对同一版本的 `SHA256SUMS.txt`。
 
 1. 下载 `conversation-handoff-<version>.zip`。
 2. 核对 SHA-256。
@@ -72,4 +86,8 @@ python -X utf8 scripts/package_release.py --release all --verify-only
 python -X utf8 -m unittest discover -s scripts/tests -v
 python -X utf8 -m unittest discover -s skills/conversation-handoff/tests -v
 ```
+
+---
+
+如果它帮你在超长对话换窗口时保住了关键上下文，欢迎点一个 ⭐，帮助更多人发现“可验证交接”与普通摘要的区别。
 
